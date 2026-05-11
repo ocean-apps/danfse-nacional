@@ -514,19 +514,19 @@
                 </td>
                 <td style="width: 25%;">
                     <span class="label">Contribuições Sociais - Retidas</span>
-                    <span class="value"><?= $data['tributacao_federal']['contrib_sociais'] ?? '-' ?></span>
+                    <span class="value"><?= $data['tributacao_federal']['csll'] ?? '-' ?></span>
                 </td>
                 <td style="width: 25%;">
                     <span class="label">Descrição Contrib. Sociais - Retidas</span>
-                    <span class="value"><?= $data['tributacao_federal']['desc_contrib_sociais'] ?? '-' ?></span>
+                    <span class="value"><?= $data['tributacao_federal']['desc_csll'] ?? '-' ?></span>
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td>
                     <span class="label">PIS - Débito Apuração Própria</span>
                     <span class="value"><?= $data['tributacao_federal']['pis'] ?? '-' ?></span>
                 </td>
-                <td colspan="2">
+                <td>
                     <span class="label">COFINS - Débito Apuração Própria</span>
                     <span class="value"><?= $data['tributacao_federal']['cofins'] ?? '-' ?></span>
                 </td>

@@ -123,4 +123,13 @@ class Formatter
 
         return mb_substr($value, 0, $limit) . $end;
     }
+
+    public function percentage(?string $value): string
+    {
+        if (!$value || !is_numeric($value)) {
+            return '-';
+        }
+
+        return number_format((float) $value, 2, ',', '.')  . ' %';
+    }
 }

@@ -14,6 +14,7 @@ use DanfseNacional\Enums\RegEspTrib;
 use DanfseNacional\Enums\TpRetISSQN;
 use DanfseNacional\Enums\TribISSQN;
 use DanfseNacional\Data\Municipios;
+use DanfseNacional\Enums\TpRetPisCofins;
 use DanfseNacional\Formatter;
 
 /**
@@ -72,6 +73,7 @@ class DanfseTemplate
         $tribFed = $trib?->tribFed;
         $totTrib = $trib?->totTrib;
         $valoresNfse = $inf?->valores;
+        $vTotTrib = $totTrib?->vTotTrib;
 
         // Chave de acesso (remove prefixo "NFS")
         $id = $inf?->Id ?? '';
@@ -167,16 +169,17 @@ class DanfseTemplate
                 'municipio_incidencia' => $inf?->xLocIncid ?? '-',
                 'regime_especial' => RegEspTrib::labelFor($regTrib?->regEspTrib ?? ''),
                 'valor_servico' => $this->fmt->currency($vServPrest?->vServ ?? ''),
-                'bc_issqn' => $tribMun?->vBC ? $this->fmt->currency($tribMun->vBC) : '-',
-                'aliquota' => $tribMun?->pAliq ? $tribMun->pAliq . '%' : '-',
+                'bc_issqn' =>  $this->fmt->currency($valoresNfse?->vBC ?? $tribMun?->vBC ?? null),
+                'aliquota' => $this->fmt->percentage($valoresNfse?->pAliqAplic ?? $tribMun?->pAliq ?? null),
                 'retencao_issqn' => TpRetISSQN::labelFor($tribMun?->tpRetISSQN ?? ''),
-                'issqn_apurado' => $tribMun?->vISSQN ? $this->fmt->currency($tribMun->vISSQN) : '-',
+                'issqn_apurado' => $this->fmt->currency($valoresNfse?->vISSQN ?? $tribMun?->vISSQN ?? null),
             ],
 
             'tributacao_federal' => [
                 'irrf' => $tribFed?->vRetIRRF ? $this->fmt->currency($tribFed->vRetIRRF) : '-',
                 'cp' => $tribFed?->vRetCP ? $this->fmt->currency($tribFed->vRetCP) : '-',
                 'csll' => $tribFed?->vRetCSLL ? $this->fmt->currency($tribFed->vRetCSLL) : '-',
+                'desc_csll' => TpRetPisCofins::labelFor($tribFed?->piscofins?->tpRetPisCofins ?? ''),
                 'pis' => $tribFed?->piscofins?->vPis ? $this->fmt->currency($tribFed->piscofins->vPis) : '-',
                 'cofins' => $tribFed?->piscofins?->vCofins ? $this->fmt->currency($tribFed->piscofins->vCofins) : '-',
             ],
@@ -201,9 +204,9 @@ class DanfseTemplate
             ],
 
             'totais_tributos' => [
-                'federais' => $totTrib?->pTotTrib?->pTotTribFed ? $totTrib->pTotTrib->pTotTribFed . '%' : '-',
-                'estaduais' => $totTrib?->pTotTrib?->pTotTribEst ? $totTrib->pTotTrib->pTotTribEst . '%' : '-',
-                'municipais' => $totTrib?->pTotTrib?->pTotTribMun ? $totTrib->pTotTrib->pTotTribMun . '%' : '-',
+                'federais' => $vTotTrib?->vTotTribFed ? $this->fmt->currency($vTotTrib->vTotTribFed) : '-',
+                'estaduais' => $vTotTrib?->vTotTribEst ? $this->fmt->currency($vTotTrib->vTotTribEst) : '-',
+                'municipais' => $vTotTrib?->vTotTribMun ? $this->fmt->currency($vTotTrib->vTotTribMun) : '-',
             ],
 
             'informacoes_complementares' => $serv?->infoCompl?->xInfComp ?? '',
