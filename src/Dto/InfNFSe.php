@@ -13,6 +13,7 @@ readonly class InfNFSe
         public string $xLocIncid = '',
         public string $xTribNac = '',
         public string $xTribMun = '',
+        public string $xNBS = '',
         public string $verAplic = '',
         public string $ambGer = '',
         public string $tpEmis = '',

@@ -124,7 +124,7 @@ class DanfseTemplate
                 'cnpj_cpf' => $this->fmt->cnpjCpf($emit?->documento() ?? ''),
                 'im' => '-',
                 'telefone' => $this->fmt->phone($emit?->fone ?? ''),
-                'email' => strtolower($emit?->email ?? ''),
+                'email' => strtolower($emit?->email ?? '–'),
                 'endereco' => $enderecoEmit ?: '-',
                 'municipio' => $municipioEmit ?: '-',
                 'cep' => $this->fmt->cep($enderEmit?->CEP ?? ''),
@@ -137,7 +137,7 @@ class DanfseTemplate
                 'cnpj_cpf' => $this->fmt->cnpjCpf($toma?->documento() ?? ''),
                 'im' => $toma?->IM ?: '-',
                 'telefone' => $this->fmt->phone($toma?->fone ?? ''),
-                'email' => strtolower($toma?->email ?? ''),
+                'email' => strtolower($toma?->email ?? '–'),
                 'endereco' => $enderecoToma ?: '-',
                 'municipio' => $endToma?->endNac?->cMun ? Municipios::lookup($endToma->endNac->cMun) : '-',
                 'cep' => $this->fmt->cep($cepToma),
@@ -148,7 +148,7 @@ class DanfseTemplate
                 'cnpj_cpf' => $this->fmt->cnpjCpf($interm->documento()),
                 'im' => $interm->IMPrestMun ?: '-',
                 'telefone' => $this->fmt->phone($interm->fone),
-                'email' => strtolower($interm->email),
+                'email' => strtolower($interm->email ?? '–'),
                 'endereco' => $enderecoInterm ?: '-',
                 'municipio' => $endInterm?->endNac?->cMun ? Municipios::lookup($endInterm->endNac->cMun) : '-',
                 'cep' => $this->fmt->cep($cepInterm),
@@ -210,6 +210,7 @@ class DanfseTemplate
             ],
 
             'informacoes_complementares' => $serv?->infoCompl?->xInfComp ?? '',
+            'c_nbs' => $cServ?->cNBS ?? '–',
         ];
     }
 

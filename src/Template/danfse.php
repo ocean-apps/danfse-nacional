@@ -613,6 +613,10 @@
             <tr>
                 <td style="min-height: 30pt; padding: 5pt;">
                     <span class="value"><?= $data['informacoes_complementares'] ?></span>
+                    <div style="display: flex; flex-direction: row; align-items: end; gap: 2px; margin-left: -2.5pt;">
+                        <span class="value" style="font-size: 7pt;font-weight: bold;">NBS:</span>
+                        <span class="value" style="margin-bottom: 2pt;"><?= $data['c_nbs'] ?></span>
+                    </div>
                 </td>
             </tr>
         </table>
