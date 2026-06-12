@@ -159,14 +159,14 @@ class DanfseTemplate
                 'desc_trib_nacional' => $this->fmt->limit(trim($inf?->xTribNac ?? ''), 60),
                 'codigo_trib_municipal' => $cServ?->cTribMun ?? '-',
                 'desc_trib_municipal' => $this->fmt->limit(trim($inf?->xTribMun ?? ''), 60),
-                'local_prestacao' => $inf?->xLocPrestacao ?? '-',
+                'local_prestacao' => $locPrest?->cLocPrestacao ? Municipios::lookup($locPrest?->cLocPrestacao) : '-',
                 'pais_prestacao' => $locPrest?->cPaisPrestacao ?? '-',
                 'descricao' => $cServ?->xDescServ ?? '-',
             ],
 
             'tributacao_municipal' => [
                 'tributacao_issqn' => TribISSQN::labelFor($tribMun?->tribISSQN ?? ''),
-                'municipio_incidencia' => $inf?->xLocIncid ?? '-',
+                'municipio_incidencia' => $inf?->cLocIncid ? Municipios::lookup($inf?->cLocIncid) : '-',
                 'regime_especial' => RegEspTrib::labelFor($regTrib?->regEspTrib ?? ''),
                 'valor_servico' => $this->fmt->currency($vServPrest?->vServ ?? ''),
                 'bc_issqn' =>  $this->fmt->currency($valoresNfse?->vBC ?? $tribMun?->vBC ?? null),
@@ -188,9 +188,7 @@ class DanfseTemplate
                 'valor_servico' => $this->fmt->currency($vServPrest?->vServ ?? ''),
                 'desconto_condicionado' => $tribMun?->vDescCond ? $this->fmt->currency($tribMun->vDescCond) : '-',
                 'desconto_incondicionado' => $tribMun?->vDescIncond ? $this->fmt->currency($tribMun->vDescIncond) : '-',
-                'issqn_retido' => ($tribMun?->vISSQN && ($tribMun?->tpRetISSQN ?? '1') !== '1')
-                    ? $this->fmt->currency($tribMun->vISSQN)
-                    : '-',
+                'issqn_retido' => ($valoresNfse?->vISSQN && ($tribMun?->tpRetISSQN ?? '1') !== '1') ? $this->fmt->currency($valoresNfse?->vISSQN) : '-',
                 'retencoes_federais' => $this->sumCurrency(
                     $tribFed?->vRetIRRF ?? '',
                     $tribFed?->vRetCP ?? '',
