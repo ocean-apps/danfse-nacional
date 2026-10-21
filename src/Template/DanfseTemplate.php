@@ -364,10 +364,10 @@ class DanfseTemplate
         $prefix = 'Totais Aproximados dos Tributos cfe. Lei nº 12.741/2012: ';
 
         $v = $totTrib?->vTotTrib;
-        if ($v !== null && ($v->vTotTribFed !== '' || $v->vTotTribEst !== '' || $v->vTotTribMu !== '')) {
+        if ($v !== null && ($v->vTotTribFed !== '' || $v->vTotTribEst !== '' || $v->vTotTribMun !== '')) {
             $fed = $v->vTotTribFed !== '' ? $this->fmt->currency($v->vTotTribFed) : '-';
             $est = $v->vTotTribEst !== '' ? $this->fmt->currency($v->vTotTribEst) : '-';
-            $mun = $v->vTotTribMu !== '' ? $this->fmt->currency($v->vTotTribMu) : '-';
+            $mun = $v->vTotTribMun !== '' ? $this->fmt->currency($v->vTotTribMun) : '-';
             return $prefix . "Federais: {$fed}; Estaduais: {$est}; Municipais: {$mun}";
         }
 

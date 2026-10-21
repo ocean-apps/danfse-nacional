@@ -7,6 +7,6 @@ readonly class TotTribValue
     public function __construct(
         public string $vTotTribFed = '',
         public string $vTotTribEst = '',
-        public string $vTotTribMu = '',
+        public string $vTotTribMun = '',
     ) {}
 }
