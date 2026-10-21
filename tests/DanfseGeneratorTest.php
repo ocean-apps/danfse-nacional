@@ -495,7 +495,7 @@ class DanfseGeneratorTest extends TestCase
     {
         $xml = preg_replace(
             '#<pTotTrib>.*?</pTotTrib>#s',
-            '<vTotTrib><vTotTribFed>67.50</vTotTribFed><vTotTribEst>1.50</vTotTribEst><vTotTribMu>30.00</vTotTribMu></vTotTrib>',
+            '<vTotTrib><vTotTribFed>67.50</vTotTribFed><vTotTribEst>1.50</vTotTribEst><vTotTribMun>30.00</vTotTribMun></vTotTrib>',
             $this->realXml,
         );
 
